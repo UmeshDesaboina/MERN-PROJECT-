@@ -10,8 +10,8 @@ const otpSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Ensure a TTL index on expiresAt
 otpSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 });
 otpSchema.index({ email: 1, purpose: 1 }, { unique: true });
 
-
+// Correct: export the model directly
+module.exports = mongoose.model('Otp', otpSchema);
