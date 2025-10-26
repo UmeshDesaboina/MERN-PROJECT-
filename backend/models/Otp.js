@@ -15,3 +15,13 @@ otpSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 });
 otpSchema.index({ email: 1, purpose: 1 }, { unique: true });
 
 module.exports = mongoose.model('Otp', otpSchema);
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,         // SSL
+  secure: true,      // true for port 465, false for 587
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
